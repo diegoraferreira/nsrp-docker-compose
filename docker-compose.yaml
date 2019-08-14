@@ -46,12 +46,6 @@ services:
     networks:
       - nsrp-challenge
 
-  adminer:
-    image: adminer
-    container_name: adminer
-    ports:
-      - 9090:8080
-
   nsrp-challenge-campanha:
     image: nsrp-challenge-campanha:latest
     container_name: nsrp-challenge-campanha
@@ -62,15 +56,15 @@ services:
     depends_on: 
       - mysql-campanha
 
- # nsrp-challenge-socio-torcedor:
- #   image: nsrp-challenge-socio-torcedor:latest
- #   container_name: nsrp-challenge-socio-torcedor
- #   ports:
- #     - 8081:8080
- #   networks:
- #     - nsrp-challenge
- #   depends_on: 
- #     - mysql-socio-torcedor
+  nsrp-challenge-socio-torcedor:
+    image: nsrp-challenge-socio-torcedor:latest
+    container_name: nsrp-challenge-socio-torcedor
+    ports:
+     - 8081:8080
+    networks:
+     - nsrp-challenge
+    depends_on: 
+     - mysql-socio-torcedor
 
 networks:
   nsrp-challenge:
