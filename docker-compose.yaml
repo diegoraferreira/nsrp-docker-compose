@@ -1,12 +1,12 @@
 version: '3'
 
 services:
-  mysql:
+  mysql-campanha:
     image: mysql:8.0
-    container_name: mysql
+    container_name: mysql-campanha
     restart: unless-stopped
     environment:
-      - MYSQL_DATABASE=nsrp-challenge
+      - MYSQL_DATABASE=nsrp-campanha
       - MYSQL_USER=nsrp
       - MYSQL_PASSWORD=nsrp@challenge
       - MYSQL_ROOT_PASSWORD=mysql
@@ -16,8 +16,24 @@ services:
     networks:
       - nsrp-challenge
 
+  mysql-socio-torcedor:
+    image: mysql:8.0
+    container_name: mysql-socio-torcedor
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=nsrp-socio-torcedor
+      - MYSQL_USER=nsrp
+      - MYSQL_PASSWORD=nsrp@challenge
+      - MYSQL_ROOT_PASSWORD=mysql
+    command: '--default-authentication-plugin=mysql_native_password'
+    ports:
+      - "3307:3306"
+    networks:
+      - nsrp-challenge
+
   activemq:
     image: webcenter/activemq:latest
+    container_name: activemq
     ports:
       - 8161:8161
       - 61616:61616
@@ -27,6 +43,8 @@ services:
       ACTIVEMQ_REMOVE_DEFAULT_ACCOUNT: 'True'
       ACTIVEMQ_ADMIN_LOGIN: admin
       ACTIVEMQ_ADMIN_PASSWORD: admin
+    networks:
+      - nsrp-challenge
 
   adminer:
     image: adminer
@@ -42,7 +60,7 @@ services:
     networks:
       - nsrp-challenge
     depends_on: 
-      - mysql
+      - mysql-campanha
 
  # nsrp-challenge-socio-torcedor:
  #   image: nsrp-challenge-socio-torcedor:latest
@@ -52,7 +70,7 @@ services:
  #   networks:
  #     - nsrp-challenge
  #   depends_on: 
- #     - mysql
+ #     - mysql-socio-torcedor
 
 networks:
   nsrp-challenge:
