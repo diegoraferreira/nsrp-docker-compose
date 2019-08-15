@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 
 services:
   mysql-campanha:
@@ -49,6 +49,7 @@ services:
   nsrp-challenge-campanha:
     image: nsrp-challenge-campanha:latest
     container_name: nsrp-challenge-campanha
+    restart: unless-stopped
     ports:
       - 8080:8080
     networks:
@@ -59,6 +60,7 @@ services:
   nsrp-challenge-socio-torcedor:
     image: nsrp-challenge-socio-torcedor:latest
     container_name: nsrp-challenge-socio-torcedor
+    restart: unless-stopped
     ports:
      - 8081:8080
     networks:
