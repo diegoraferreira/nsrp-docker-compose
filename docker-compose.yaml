@@ -62,7 +62,7 @@ services:
     container_name: nsrp-challenge-socio-torcedor
     restart: unless-stopped
     ports:
-     - 8081:8080
+     - 8081:8081
     networks:
      - nsrp-challenge
     depends_on: 
