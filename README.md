@@ -15,10 +15,10 @@ Docker compose responsável pela execução da solução de cadastro de campanha
 A execução poderá ser feita através do comando `docker-compose up -d` no diretório onde se encontra o arquivo docker-compose.yaml
 
 #### Acesso aos serviços
-| Serviço | Porta |
+| Container | Porta |
 |---|---|
-| Mysql Serviço de campanha |3306|
-| Mysql Serviço de sócio torcedor | 3307|
-| ActiveMQ                      | 61616|
+| mysql-campanha |3306|
+| mysql-socio-torcedor | 3307|
+| activemq                      | 61616|
 | nsrp-challenge-campanha       | 8080|
 | nsrp-challenge-socio-torcedor | 8081|
